@@ -19,7 +19,7 @@ This chatbot responds to basic user inputs with a mix of sass and reluctant assi
 2. Clone this repository:
 
    ```
-   git clone <https://github.com/Yllodido3d/little-sage-agent>
+   git clone <https://github.com/Yllodido3d/little-sage-agent.git>
    ```
 3. Navigate to the project folder and run the script:
 
