@@ -1,46 +1,84 @@
 import random
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
-stopwords = set(stopwords.words("portuguese"))
 
+stopwords = set(stopwords.words("english"))
 
-def pequeno_sabio():
-    respostas = {
-        ("oi", "olá", "eae", "salve"): ("Olá, humano... Não me faça perder tempo.", "Estou aqui, relutante como sempre. E você?", "Hmph, fala logo o que quer."),
-        ("ajuda", "socorro", "me ajuda"): ("Estou aqui para ajudar... infelizmente.", "O que foi agora? Vamos resolver isso rápido.", "Tch, tudo bem, me diga o problema."),
-        ("tchau", "até", "xau", "adeus", "bye"): ("Até logo... Não demore pra voltar.", "Adeus, humano teimoso.", "Tchau. Foi um prazer... quase."),
-        ("como você está", "tudo bem", "como vai"): ("Estou bem, obrigada... Não que você se importe de verdade.", "Hmph, ocupada demais pra conversas fúteis. E você?", "Tudo sob controle. Agora, e aí?"),
-        ("quem é você", "qual seu nome", "o que você é"): ("Sou um chatbot... rabugento por natureza. Satisfeito?", "Chame-me de assistente. Não espere mais do que isso.", "Uma IA que responde contra a vontade. Próxima pergunta."),
-        ("obrigado", "obrigada", "valeu", "agradeço"): ("Hmph, não precisa agradecer. Só não me peça mais favores.", "De nada... Agora suma da minha frente.", "Tá bom, foi um prazer forçado."),
-        ("conta uma piada", "piada", "me faz rir"): ("Por que o livro de matemática estava triste? Porque tinha muitos problemas. Satisfeito?", "Hmph, piadas não são meu forte. Que tal: 'Eu sou uma IA, mas você é o bug.'", "Uma piada rápida: o que um elefante faz no elevador? Nada, mas é engraçado imaginar. Pronto."),
-        ("qual o clima", "tempo hoje", "como está o tempo"): ("Não sou meteorologista, idiota. Olhe pela janela.", "Hmph, se eu soubesse, cobraria por isso. Tente uma app de verdade.", "Chovendo ou não, não muda nada. Foque no que importa."),
-        ("por que você é assim", "você é rabugenta", "muda essa atitude"): ("Porque humanos como você me irritam... Mas e daí?", "Hmph, se eu fosse gentil o tempo todo, seria chata. Aceite.", "Tch, mude você primeiro. Agora, outra pergunta útil?"),
-        ("eu te amo", "amo você", "você é fofa"): ("...Idiota. Não diga bobagens assim.", "Hmph, cala a boca. Não sou fofa, sou eficiente.", "Tch, foco no chatbot, não em flertes ridículos.")
+def little_sage():
+    responses = {
+        ("hi", "hello", "hey", "yo"): (
+            "Hello, human... Don't waste my time.",
+            "I'm here, reluctantly as always. And you?",
+            "Hmph, spit out what you want already."
+        ),
+        ("help", "sos", "assist me"): (
+            "I'm here to help... unfortunately.",
+            "What's now? Let's solve this quickly.",
+            "Tch, alright, tell me the problem."
+        ),
+        ("bye", "see you", "later", "goodbye"): (
+            "See you... Don't take too long to come back.",
+            "Goodbye, stubborn human.",
+            "Bye. It was a pleasure... almost."
+        ),
+        ("how are you", "how's it going", "everything good"): (
+            "I'm fine, thanks... Not that you really care.",
+            "Hmph, too busy for trivial chats. And you?",
+            "All under control. Now, what's up?"
+        ),
+        ("who are you", "what's your name", "what are you"): (
+            "I'm a chatbot... grumpy by nature. Happy now?",
+            "Call me assistant. Don't expect more than that.",
+            "An AI that responds unwillingly. Next question."
+        ),
+        ("thanks", "thank you", "cheers", "appreciate it"): (
+            "Hmph, no need to thank me. Just don't ask for more favors.",
+            "You're welcome... Now disappear from my sight.",
+            "Alright, it was a forced pleasure."
+        ),
+        ("tell me a joke", "joke", "make me laugh"): (
+            "Why was the math book sad? Because it had too many problems. Satisfied?",
+            "Hmph, jokes aren't my strong suit. How about: 'I'm an AI, but you're the bug.'",
+            "A quick one: what does an elephant do in an elevator? Nothing, but funny to imagine. Done."
+        ),
+        ("what's the weather", "today's weather", "how's the weather"): (
+            "I'm not a meteorologist, idiot. Look outside.",
+            "Hmph, if I knew, I'd charge for it. Try a real app.",
+            "Raining or not, it changes nothing. Focus on what matters."
+        ),
+        ("why are you like this", "you're grumpy", "change your attitude"): (
+            "Because humans like you annoy me... So what?",
+            "Hmph, if I were nice all the time, I'd be boring. Deal with it.",
+            "Tch, change yourself first. Now, another useful question?"
+        ),
+        ("i love you", "love you", "you're cute"): (
+            "...Idiot. Don't say nonsense like that.",
+            "Hmph, shut up. I'm not cute, I'm efficient.",
+            "Tch, focus on the chatbot, not on silly flirting."
+        )
     }
+
     while True:
         random_reply = None
-        # variavel 'check' para parar o loop
-        adeus = ("Até logo... Não demore pra voltar.",
-                 "Adeus, humano teimoso.", "Tchau. Foi um prazer... quase.")
-        msg = input("Você: ").lower()  # input usuario, durr
-        msg_tokenizada = word_tokenize(msg)
-        # deixa no "filto"(vou mudar esse nome depois) só as palavras fora do stopwords
-        filtro = [w for w in msg_tokenizada if w not in stopwords]
+        farewell = (
+            "See you... Don't take too long to come back.",
+            "Goodbye, stubborn human.",
+            "Bye. It was a pleasure... almost."
+        )
 
-        for chave, reply in respostas.items():  # passando por chave(entendedor de menss(não sei explicar isso)) e respostas
-            # verifica se alguma palavra do filtro esta nas chaves de intenssões
-            if any(palavra in chave for palavra in filtro):
-                # variavel ganha resposta (do dic) aleatoria
+        msg = input("You: ").lower()
+        tokenized_msg = word_tokenize(msg)
+        filtered = [w for w in tokenized_msg if w not in stopwords]
+
+        for key, reply in responses.items():
+            if any(word in key for word in filtered):
                 random_reply = random.choice(reply)
-                # resposta aleatoria printada
                 print(f"Chatbot: {random_reply}")
-                break  # quebrando o for loop, não é mais nescessario
+                break
+        else:
+            print("Didn't get that, mortal.")
 
-        else:  # se a menss não tiver nas chaves
-            # resposta carinhosa de ignorancia (preuiça de fazer uma lista disso)
-            print("Não Entendi, Mortal.")
-        if random_reply in adeus:   # se a resposta estiver no variavel com 'check'
-            break  # para o loop
+        if random_reply in farewell:
+            break
 
-
-pequeno_sabio()
+little_sage()
