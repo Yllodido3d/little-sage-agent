@@ -1,57 +1,61 @@
-# Little Sage Chatbot
+Little Sage Chatbot (LittleSageV0.3)
+A Python chatbot with a tsundere twist – grumpy on the outside, secretly useful. This project started as a personal exercise to master Python basics (loops, dictionaries, functions) and has evolved into a sass-filled assistant with memory. Created by a stubborn coder who’s too lazy to write this himself, so Grok (xAI) stepped in – no tricks, just pure reluctance!
+Overview
+"Little Sage" responds to user inputs with a mix of attitude and hidden care, now powered by a SQLite database for memory. Originally coded in Portuguese and translated to English (thanks to GPT and creator laziness), this version upgrades the chatbot’s brain to store and retrieve responses dynamically. It’s still a work in progress, but it’s getting sassier and smarter!
+Updates in This Version (V0.3)
 
-A simple Python chatbot with a tsundere personality – grumpy but secretly helpful. This project was created as a personal exercise to practice Python basics (loops, dictionaries, functions) and add some fun to coding.
+SQLite Integration: Swapped the old dictionary for a responses table in wise_memory.db, adding id, question, answer, and timestamp fields. Responses are now stored and fetched from the database, making it scalable (and less prone to manual edits).
+Database Initialization: Includes a function to populate the table, with a DELETE and INSERT combo to refresh data on startup.
+Query Logic: Uses SELECT with IN clauses to match tokenized user inputs against database questions, improving flexibility over the dictionary approach.
+NLTK Enhancements: Continues using word_tokenize and stopwords to filter meaningful words, ensuring better intent detection.
 
-## Overview
+Features
 
-This chatbot responds to basic user inputs with a mix of sass and reluctant assistance. It includes triggers for greetings, farewells, help requests, and even some bad jokes. The code was initially written in Portuguese, but the base has been translated to English using GPT (because the creator is lazy) for better accessibility on GitHub. This README was crafted by Grok (xAI), following the creator's instructions – no deception intended, just laziness acknowledged.
+Handles common phrases like "hi," "help," "bye," and more with tsundere flair.
+Random response selection for variety and sass (e.g., "Hmph, don’t waste my time.").
+Persistent memory via SQLite, storing all question-answer pairs with timestamps.
+NLTK-powered input processing for smarter keyword matching.
+Clean exit on farewell messages.
 
-## Updates in This Version
+How to Run
 
-- Added NLTK library for natural language processing: Now uses `word_tokenize` to break user messages into words and `stopwords` to filter out useless common words (like "the", "is", etc.). This makes matching triggers more accurate and efficient, ignoring filler words.
-- Improved input handling: The chatbot now processes filtered words to check against response keys, reducing false negatives for varied user inputs.
 
-## Features
+Ensure Python 3.x is installed.
 
-- Responds to common phrases like "hi," "help," "bye," and more.
-- Tsundere personality with grumpy yet caring replies (e.g., "Hmph, don't waste my time.").
-- Random response selection for variety.
-- Enhanced message processing with NLTK for better keyword detection.
-- Graceful exit on farewell messages.
 
-## How to Run
+Install NLTK and download required data (run in Python console: import nltk; nltk.download('punkt'); nltk.download('stopwords')).
 
-1. Ensure you have Python 3.x installed.
-2. Install NLTK and download required data (run in Python console: `import nltk; nltk.download('punkt'); nltk.download('stopwords')`).
-3. Clone this repository:
 
-   ```
-   git clone https://github.com/Yllodido3d/little-sage-agent.git
-   ```
-3. Navigate to the project folder and run the script:
+Clone this repository:
+textgit clone https://github.com/Yllodido3d/little-sage-agent.git
 
-   ```
-   python chatbotsábioV0.2.py
-   ```
-5. Start chatting! Type messages and see the chatbot's responses.
 
-## Code Details
+Navigate to the project folder and install dependencies (if any beyond NLTK arise, check requirements.txt).
 
-- The dictionary of responses was crafted by Grok (xAI), adding a tsundere flair to keep things interesting.
-- Uses `random.choice()` for dynamic replies and a simple loop to handle user input.
-- NLTK integration: Tokenizes and filters user messages to improve trigger matching.
-- No other external dependencies besides NLTK – pure Python otherwise!
 
-## Future Improvements
+Run the script:
+textpython little_sage_v0.3.py
 
-- Add more response categories or advanced NLP features.
-- Implement file storage for custom user inputs.
-- Maybe make it less grumpy... but don’t count on it.
 
-## Contributing
+Start chatting! Type messages and enjoy the chatbot’s reluctant responses.
 
-Feel free to fork and submit pull requests. Suggestions are welcome, but don’t expect me to be nice about it.
 
-## License
+Code Details
 
-This project is for personal use. No formal license yet – consider it a gift from a reluctant AI.
+Responses crafted by Grok (xAI) with a tsundere personality to keep things spicy.
+Uses random.choice() for dynamic replies and a loop for continuous interaction.
+SQLite handles data storage with INSERT and SELECT queries, managed via sqlite3.
+NLTK filters out stopwords, making the chatbot less confused by filler words.
+No heavy dependencies – just Python, NLTK, and SQLite!
+
+Future Improvements
+
+Add more response categories or integrate external APIs (e.g., weather data).
+Enhance NLP with intent recognition or context awareness.
+Build a GUI or Telegram/Discord bot interface for easier access.
+Maybe soften the attitude… but don’t hold your breath!
+
+Contributing
+Fork it and send pull requests if you dare. Suggestions are welcome, but expect a grumpy review – I’m not here to coddle you!
+License
+Personal use only for now. No formal license – consider it a reluctant gift from an AI with attitude.
